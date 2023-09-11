@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- sudo nvidia-smi -lgc 300,1500 -->
 <launch>
   <!-- Essential parameters -->
-  <arg name="map_path" description="point cloud and lanelet2 map directory path"/>
-  <arg name="vehicle_model" description="vehicle model name"/>
-  <arg name="sensor_model" description="sensor model name"/>
-  <arg name="use_pointcloud_container" default="true" description="launch pointcloud container"/>
+  <arg name="map_path" description="point cloud and lanelet2 map directory path" default="/home/dev/autoware_map/gyor_campus/" />
+  <arg name="vehicle_model" description="vehicle model name" default="lexus3_vehicle"/>
+  <arg name="sensor_model" description="sensor model name" default="lexus3_sensor_kit"/>
+  <arg name="sensor_kit" description="sensor kit name" default="lexus3_sensor_kit_description"/>
+  <arg name="use_pointcloud_container" default="false" description="launch pointcloud container"/>
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
 
   <!-- Optional parameters -->
@@ -12,9 +14,11 @@
   <arg name="launch_vehicle" default="true" description="launch vehicle"/>
   <arg name="launch_system" default="true" description="launch system"/>
   <arg name="launch_map" default="true" description="launch map"/>
-  <arg name="launch_sensing" default="true" description="launch sensing"/>
-  <arg name="launch_sensing_driver" default="true" description="launch sensing driver"/>
+  <arg name="launch_sensing" default="false" description="launch sensing"/>
+  <arg name="launch_sensing_driver" default="false" description="launch sensing driver"/>
+  
   <arg name="launch_localization" default="true" description="launch localization"/>
+    
   <arg name="launch_perception" default="true" description="launch perception"/>
   <arg name="launch_planning" default="true" description="launch planning"/>
   <arg name="launch_control" default="true" description="launch control"/>
@@ -39,6 +43,10 @@
   <!-- Perception -->
   <arg name="perception_mode" default="lidar" description="select perception mode. camera_lidar_radar_fusion, camera_lidar_fusion, lidar_radar_fusion, lidar, radar"/>
   <arg name="traffic_light_recognition/enable_fine_detection" default="true" description="enable traffic light fine detection"/>
+  <!-- Localization -->
+  <!-- 
+    -->
+   <arg name="localization_mode" default="lidar" description="select localization mode. lidar, camera"/> 
 
   <!-- Global parameters -->
   <group scoped="false">
@@ -84,6 +92,9 @@
 
   <!-- Localization -->
   <group if="$(var launch_localization)">
+    <!-- 
+    <include file="$(find-pkg-share autoware_launch)/launch/components/map4_localization_component.launch.xml"/> 
+    -->
     <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_localization_component.launch.xml"/>
   </group>
 
@@ -109,7 +120,7 @@
 
   <!-- Tools -->
   <group>
-    <node
+   <node
       pkg="rviz2"
       exec="rviz2"
       name="rviz2"
@@ -119,4 +130,18 @@
       respawn="$(var rviz_respawn)"
     />
   </group>
+  <!-- Lexus3 -->
+
+  <node pkg="topic_tools" exec="relay" name="relay1" output="screen" args="/lexus3/gps/duro/odom /localization/kinematic_state"/>
+  <node pkg="topic_tools" exec="relay" name="relay2" output="screen" args="/points_raw/cropbox/filtered /sensing/lidar/concatenated/pointcloud"/>
+  <!-- ros2 run tf2_ros static_transform_publisher -1.542 -0.49 -1.479 0.0 0.0 0.0 1.0 gps1 base_link -->
+  <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="static_transform_publisher1" output="screen" args="-1.542 -0.49 -1.479 0.0 0.0 0.0 1.0 gps1 base_link"/> -->
+  <include file="$(find-pkg-share autoware_launch)/launch/can1.launch.xml"/> 
+  <include file="$(find-pkg-share pacmod_interface)/launch/pacmod_interface.launch.xml"/>
+  <!-- 
+  <include file="$(find-pkg-share autoware_launch)/launch/lidar1.launch.py"/>
+  <include file="$(find-pkg-share autoware_launch)/launch/gps1.launch.py"/>
+  -->
+  
+
 </launch>

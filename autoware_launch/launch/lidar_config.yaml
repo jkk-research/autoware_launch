@@ -1,0 +1,54 @@
+lexus3/os_center/os_sensor:
+  ros__parameters:
+    sensor_hostname: 'os-992219000350.local'
+    udp_dest: '192.168.1.5'
+    mtp_dest: ''
+    mtp_main: false
+    lidar_mode: '1024x20'
+    timestamp_mode: 'TIME_FROM_ROS_TIME'
+    udp_profile_lidar: 'RNG19_RFL8_SIG16_NIR16'
+    metadata: ''
+    lidar_port: 7505
+    imu_port: 7504
+lexus3/os_center/os_cloud:
+  ros__parameters:
+    sensor_frame: 'os_center_a_base_link'
+    lidar_frame: 'os_center_a_lidar'
+    imu_frame: 'os_center_a_imu'
+    timestamp_mode: 'TIME_FROM_ROS_TIME'  # this value needs to match os_sensor/timestamp_mode
+lexus3/os_right/os_sensor:
+  ros__parameters:
+    sensor_hostname: 'os-122231000907.local'
+    udp_dest: '192.168.1.5'
+    mtp_dest: ''
+    mtp_main: false
+    lidar_mode: '1024x20'
+    timestamp_mode: 'TIME_FROM_ROS_TIME'
+    udp_profile_lidar: 'RNG19_RFL8_SIG16_NIR16'
+    metadata: ''
+    lidar_port: 7503
+    imu_port: 7502
+lexus3/os_right/os_cloud:
+  ros__parameters:
+    sensor_frame: 'os_right_a_base_link'
+    lidar_frame: 'os_right_a_lidar'
+    imu_frame: 'os_right_a_imu'
+    timestamp_mode: 'TIME_FROM_ROS_TIME'  # this value needs to match os_sensor/timestamp_mode
+lexus3/os_left/os_sensor:
+  ros__parameters:
+    sensor_hostname: 'os-122227001628.local'
+    udp_dest: '192.168.1.5'
+    mtp_dest: ''
+    mtp_main: false
+    lidar_mode: '1024x20'
+    timestamp_mode: 'TIME_FROM_ROS_TIME'
+    udp_profile_lidar: 'RNG19_RFL8_SIG16_NIR16'
+    metadata: ''
+    lidar_port: 7507
+    imu_port: 7506
+lexus3/os_left/os_cloud:
+  ros__parameters:
+    sensor_frame: 'os_left_a_base_link'
+    lidar_frame: 'os_left_a_lidar'
+    imu_frame: 'os_left_a_imu'
+    timestamp_mode: 'TIME_FROM_ROS_TIME'  # this value needs to match os_sensor/timestamp_mode    
