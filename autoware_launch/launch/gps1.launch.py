@@ -1,5 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, PythonExpression
 """
 orientation_source can be gps / odom  
 - gps: orientation provided from the default gps modules 
@@ -19,7 +21,13 @@ euler_based_orientation:
 def generate_launch_description():
     namespace_lx = "lexus3"
     node_id = "/gps/duro"
-    ld = LaunchDescription()
+    
+    location_arg = DeclareLaunchArgument('location', default_value='gyor', description='Location name')
+    location = LaunchConfiguration('location')
+ 
+    x_coord_offset = PythonExpression(['-639770.0 if "', location, '" == "zala" else -697237.0'])
+    y_coord_offset = PythonExpression(['-5195040.0 if "', location, '" == "zala" else -5285644.0'])
+
     duro_node = Node(
         package="duro_gps_driver",
         executable="duro_node",
@@ -30,10 +38,8 @@ def generate_launch_description():
             {"imu_frame_id": namespace_lx + "duro"},
             {"utm_frame_id": "map"},
             {"orientation_source": "gps"},
-            {"x_coord_offset": -697237.0}, # Gyor
-            {"y_coord_offset": -5285644.0}, # Gyor
-            # {"x_coord_offset": -639770.0}, # Zala
-            # {"y_coord_offset": -5195040.0}, # Zala
+            {"x_coord_offset": x_coord_offset},
+            {"y_coord_offset": y_coord_offset},
             {"z_coord_ref_switch": "exact"},
             {"z_coord_exact_height": 1.8},
             {"tf_frame_id": "map"},
@@ -43,6 +49,7 @@ def generate_launch_description():
         ],
         namespace=namespace_lx + node_id,
     )
+
     Node(
             # ros2 run tf2_ros static_transform_publisher -1.542 -0.49 -1.479 0.0 0.0 0.0 1.0 gps1 base_link
             package='tf2_ros',
@@ -50,5 +57,8 @@ def generate_launch_description():
             output='screen',
             arguments=['-1.542', '-0.49', '-1.479','0', '0', '0', '1','gps1','base_link'],
         ),
-    ld.add_action(duro_node)
-    return ld
+    
+    return LaunchDescription([
+        location_arg,
+        duro_node
+    ])
