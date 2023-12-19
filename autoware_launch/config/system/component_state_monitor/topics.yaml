@@ -11,31 +11,31 @@
     error_rate: 0.0
     timeout: 0.0
 
-- module: map
-  mode: [online, logging_simulation]
-  type: launch
-  args:
-    node_name_suffix: pointcloud_map
-    topic: /map/pointcloud_map
-    topic_type: sensor_msgs/msg/PointCloud2
-    best_effort: false
-    transient_local: true
-    warn_rate: 0.0
-    error_rate: 0.0
-    timeout: 0.0
+# - module: map
+#   mode: [online, logging_simulation]
+#   type: launch
+#   args:
+#     node_name_suffix: pointcloud_map
+#     topic: /map/pointcloud_map
+#     topic_type: sensor_msgs/msg/PointCloud2
+#     best_effort: false
+#     transient_local: true
+#     warn_rate: 0.0
+#     error_rate: 0.0
+#     timeout: 0.0
 
-- module: localization
-  mode: [online, logging_simulation, planning_simulation]
-  type: autonomous
-  args:
-    node_name_suffix: initialpose3d
-    topic: /initialpose3d
-    topic_type: geometry_msgs/msg/PoseWithCovarianceStamped
-    best_effort: false
-    transient_local: false
-    warn_rate: 0.0
-    error_rate: 0.0
-    timeout: 0.0
+# - module: localization
+#   mode: [online, logging_simulation, planning_simulation]
+#   type: autonomous
+#   args:
+#     node_name_suffix: initialpose3d
+#     topic: /initialpose3d
+#     topic_type: geometry_msgs/msg/PoseWithCovarianceStamped
+#     best_effort: false
+#     transient_local: false
+#     warn_rate: 0.0
+#     error_rate: 0.0
+#     timeout: 0.0
 
 - module: localization
   mode: [online, logging_simulation]
