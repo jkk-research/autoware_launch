@@ -35,7 +35,7 @@ def generate_launch_description():
             {"ip_address": "192.168.10.10"},
             {"port": 55555},
             {"gps_receiver_frame_id": namespace_lx + "duro"},
-            {"imu_frame_id": namespace_lx + "duro"},
+            {"imu_frame_id": namespace_lx + "duro_gps_imu"},
             {"utm_frame_id": "map"},
             {"orientation_source": "gps"},
             {"x_coord_offset": x_coord_offset},
@@ -44,7 +44,7 @@ def generate_launch_description():
             {"z_coord_exact_height": 1.8},
             {"tf_frame_id": "map"},
             {"zero_based_pose": False},
-            {"tf_child_frame_id": "gps1"},
+            {"tf_child_frame_id": "lexus3/gps"},
             {"euler_based_orientation": True}           
         ],
         namespace=namespace_lx + node_id,
