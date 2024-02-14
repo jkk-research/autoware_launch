@@ -42,7 +42,7 @@ def generate_launch_description():
             {"y_coord_offset": y_coord_offset},
             {"z_coord_ref_switch": "exact"},
             {"z_coord_exact_height": 1.8},
-            {"tf_frame_id": "map"},
+            {"tf_frame_id": "map_zala_0"},
             {"zero_based_pose": False},
             {"tf_child_frame_id": "lexus3/gps"},
             {"euler_based_orientation": True}           
@@ -50,15 +50,15 @@ def generate_launch_description():
         namespace=namespace_lx + node_id,
     )
 
-    Node(
-            # ros2 run tf2_ros static_transform_publisher -1.542 -0.49 -1.479 0.0 0.0 0.0 1.0 gps1 base_link
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            output='screen',
-            arguments=['-1.542', '-0.49', '-1.479','0', '0', '0', '1','gps1','base_link'],
-        ),
+    gps_base_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        output='screen',
+        arguments=['-1.542', '-0.49', '-1.479','0', '0', '0', '1','lexus3/gps','base_link'],
+    )
     
     return LaunchDescription([
         location_arg,
+        gps_base_tf,
         duro_node
     ])
