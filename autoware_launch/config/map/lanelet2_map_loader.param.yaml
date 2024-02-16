@@ -5,3 +5,4 @@
     longitude: 17.63512          # Longitude of map_origin, using in UTM
 
     center_line_resolution: 5.0         # [m]
+    lanelet2_map_path: $(var lanelet2_map_path) # The lanelet2 map path
