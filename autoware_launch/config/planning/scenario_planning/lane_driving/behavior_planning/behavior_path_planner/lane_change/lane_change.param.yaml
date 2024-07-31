@@ -30,6 +30,7 @@
       # safety check
       safety_check:
         allow_loose_check_for_cancel: true
+        collision_check_yaw_diff_threshold: 3.1416
         execution:
           expected_front_deceleration: -1.0
           expected_rear_deceleration: -1.0
@@ -78,7 +79,10 @@
         pedestrian: true
 
       # collision check
-      enable_prepare_segment_collision_check: false
+      enable_collision_check_for_prepare_phase:
+        general_lanes: false
+        intersection: true
+        turns: true
       prepare_segment_ignore_object_velocity_thresh: 0.1 # [m/s]
       check_objects_on_current_lanes: false
       check_objects_on_other_lanes: false
@@ -103,6 +107,7 @@
         duration: 5.0                       # [s]
         max_lateral_jerk: 100.0             # [m/s3]
         overhang_tolerance: 0.0             # [m]
+        unsafe_hysteresis_threshold: 5      # [/]
 
       finish_judge_lateral_threshold: 0.2        # [m]
 

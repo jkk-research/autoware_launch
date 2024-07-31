@@ -3,6 +3,7 @@
     out_of_lane:  # module to stop or slowdown before overlapping another lane with other objects
       mode: ttc # mode used to consider a conflict with an object. "threshold", "intervals", or "ttc"
       skip_if_already_overlapping: false # do not run this module when ego already overlaps another lane
+      ignore_overlaps_over_lane_changeable_lanelets: true  # if true, overlaps on lane changeable lanelets are ignored
 
       threshold:
         time_threshold: 5.0  # [s] consider objects that will reach an overlap within this time
@@ -18,6 +19,8 @@
                                    # if false, assume the object moves at constant velocity along *all* lanelets it currently is located in.
         predicted_path_min_confidence : 0.1  # when using predicted paths, ignore the ones whose confidence is lower than this value.
         distance_buffer: 1.0 # [m] distance buffer used to determine if a collision will occur in the other lane
+        cut_predicted_paths_beyond_red_lights: true # if true, predicted paths are cut beyond the stop line of red traffic lights
+        ignore_behind_ego: false # if true, objects behind the ego vehicle are ignored
 
       overlap:
         minimum_distance: 0.0  # [m] minimum distance inside a lanelet for an overlap to be considered
@@ -26,7 +29,8 @@
       action:  # action to insert in the path if an object causes a conflict at an overlap
         skip_if_over_max_decel: true  # if true, do not take an action that would cause more deceleration than the maximum allowed
         precision: 0.1  # [m] precision when inserting a stop pose in the path
-        distance_buffer: 1.5  # [m] buffer distance to try to keep between the ego footprint and lane
+        longitudinal_distance_buffer: 1.5  # [m] safety distance buffer to keep in front of the ego vehicle
+        lateral_distance_buffer: 1.0  # [m] safety distance buffer to keep on the side of the ego vehicle
         min_duration: 1.0  # [s] minimum duration needed before a decision can be canceled
         slowdown:
           distance_threshold: 30.0 # [m] insert a slowdown when closer than this distance from an overlap
