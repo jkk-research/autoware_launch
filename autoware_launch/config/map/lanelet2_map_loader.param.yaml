@@ -1,11 +1,6 @@
 /**:
   ros__parameters:
-    lanelet2_map_projector_type: local   # Options: MGRS, UTM, local
-    latitude: 47.68333       # Latitude of map_origin, using in UTM
-    longitude: 17.63512          # Longitude of map_origin, using in UTM
-
-    center_line_resolution: 5.0         # [m]
-
     allow_unsupported_version: true             # flag to load unsupported format_version anyway. If true, just prints warning.
+    center_line_resolution: 5.0                 # [m]
     use_waypoints: true                         # "centerline" in the Lanelet2 map will be used as a "waypoints" tag.
     lanelet2_map_path: $(var lanelet2_map_path) # The lanelet2 map path
