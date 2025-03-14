@@ -43,6 +43,7 @@ def generate_launch_description():
         plugin="GlogComponent",
         name="glog_component",
         namespace="pointcloud_container",
+        # extra_arguments=[{'use_intra_process_comms': True}],
     )
 
     pointcloud_container = ComposableNodeContainer(
@@ -56,6 +57,7 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            # add_launch_arg("use_multithread", "true"),
             add_launch_arg("use_multithread", "false"),
             add_launch_arg("container_name", "pointcloud_container"),
             set_container_executable,

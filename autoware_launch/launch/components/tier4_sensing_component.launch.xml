@@ -4,7 +4,7 @@
     <arg name="launch_driver" value="$(var launch_sensing_driver)"/>
     <arg name="sensor_model" value="$(var sensor_model)"/>
     <arg name="vehicle_param_file" value="$(find-pkg-share $(var vehicle_model)_description)/config/vehicle_info.param.yaml"/>
-    <arg name="vehicle_mirror_param_file" value="$(find-pkg-share $(var vehicle_model)_description)/config/mirror.param.yaml"/>
+    <arg name="vehicle_mirror_param_file" value="/home/dev/autoware/src/vehicle/lexus3_vehicle_launch/lexus3_vehicle_description/config/mirror.param.yaml"/> <!--TODO:-->
     <arg name="pointcloud_container_name" value="$(var pointcloud_container_name)"/>
   </include>
 </launch>
