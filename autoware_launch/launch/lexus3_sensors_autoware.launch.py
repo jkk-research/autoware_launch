@@ -79,5 +79,5 @@ def generate_launch_description():
 		# pointcloud_container_include,
 		os_composable_lidar_include,
 		raw_vehicle_converter_include,
-		autoware_speed_relay,
+		# autoware_speed_relay,
 	])

@@ -48,7 +48,7 @@
     transient_local: false
     warn_rate: 5.0
     error_rate: 1.0
-    timeout: 1.0
+    timeout: 5.0
 
 - module: perception
   mode: [online, logging_simulation]
