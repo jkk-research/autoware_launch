@@ -44,6 +44,25 @@ def generate_launch_description():
         # Node(
         #     package='tf2_ros',
         #     executable='static_transform_publisher',
+        #     name='zed_camera_front_tf_publisher',
+        #     output='screen',
+        #     arguments=[
+        #         '--x',  '1.6',
+        #         '--y',  '0.0',
+        #         '--z',  '1.34',
+        #         '--qx', '0.0',
+        #         '--qy', '0.0',
+        #         '--qz', '0.0',
+        #         '--qw', '1.0',
+
+        #         '--frame-id',       'base_link',
+        #         '--child-frame-id', 'zed_camera_link'
+        #     ],
+        # ),
+
+        # Node(
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
         #     name='left1_os_front_tf_publisher',
         #     output='screen',
         #     arguments=[
