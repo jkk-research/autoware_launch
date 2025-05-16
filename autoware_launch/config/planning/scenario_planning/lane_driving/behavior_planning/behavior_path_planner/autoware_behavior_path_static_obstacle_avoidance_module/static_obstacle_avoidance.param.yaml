@@ -24,7 +24,7 @@
           longitudinal_margin: 0.0                      # [m]
           lateral_margin:
             soft_margin: 0.7                            # [m]
-            hard_margin: 0.2                            # [m]
+            hard_margin: 0.4                           # [m]
             hard_margin_for_parked_vehicle: 0.7         # [m]
           max_expand_ratio: 0.0                         # [-] FOR DEVELOPER
           envelope_buffer_margin: 0.1                   # [m] FOR DEVELOPER
@@ -68,8 +68,8 @@
           longitudinal_margin: 0.0
           lateral_margin:
             soft_margin: 0.7
-            hard_margin: -0.2
-            hard_margin_for_parked_vehicle: -0.2
+            hard_margin: 0.4
+            hard_margin_for_parked_vehicle: 0.4
           max_expand_ratio: 0.0
           envelope_buffer_margin: 0.1
           th_error_eclipse_long_radius : 0.6
@@ -150,7 +150,7 @@
           # "auto"   : generate candidate path. if RTC is running as AUTO mode, the ego avoids it automatically.
           # "manual" : generate candidate path and wait operator approval even if RTC is running as AUTO mode.
           # "ignore" : never avoid it.
-          policy: "manual"                              # [-]
+          policy: "auto"                              # [-]
           condition:
             th_stopped_time: 3.0                        # [s]
             th_moving_distance: 1.0                     # [m]

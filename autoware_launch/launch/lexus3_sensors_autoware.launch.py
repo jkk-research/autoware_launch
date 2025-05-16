@@ -75,7 +75,7 @@ def generate_launch_description():
 	return LaunchDescription([
 		imu_include,
 		can1_include,
-		tf_static_include,
+		# tf_static_include,
 		# pointcloud_container_include,
 		os_composable_lidar_include,
 		raw_vehicle_converter_include,
