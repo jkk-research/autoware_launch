@@ -44,7 +44,10 @@
   <arg name="diagnostic_graph_aggregator_graph_path" default="$(find-pkg-share autoware_launch)/config/system/diagnostic_graph_aggregator/autoware-main.yaml" description="diagnostic graph config"/>
   <!-- Tools -->
   <arg name="rviz" default="true" description="launch rviz"/>
-  <arg name="rviz_config" default="$(find-pkg-share autoware_launch)/rviz/autoware.rviz" description="rviz config"/>
+  <!-- DEMO -->
+  <!-- <arg name="rviz_config" default="$(find-pkg-share autoware_launch)/rviz/autoware.rviz" description="rviz config"/> -->
+  <arg name="rviz_config" default="$(find-pkg-share autoware_launch)/rviz/autoware_arnl.rviz" description="rviz config"/>
+  <arg name="rviz_config_control" default="$(find-pkg-share autoware_launch)/rviz/autoware_control.rviz" description="rviz config"/>
   <arg name="rviz_respawn" default="true"/>
   <!-- Perception -->
   <arg name="perception_mode" default="lidar" description="select perception mode. camera_lidar_radar_fusion, camera_lidar_fusion, lidar_radar_fusion, lidar, radar"/>
@@ -138,12 +141,26 @@
     >
       <env name="QT_QPA_PLATFORMTHEME" value="qt5ct"/>
     </node>
+  <!-- DEMO -->
+
+   <node
+      pkg="rviz2"
+      exec="rviz2"
+      name="rviz2_control"
+      output="screen"
+      args="-d $(var rviz_config_control) -s $(find-pkg-share autoware_launch)/rviz/image/autoware.png"
+      if="$(var rviz)"
+      respawn="$(var rviz_respawn)"
+    >
+      <env name="QT_QPA_PLATFORMTHEME" value="qt5ct"/>
+    </node>
+
   </group>
+  
   <!-- Lexus3 -->
 
   <!-- <node pkg="topic_tools" exec="relay" name="relay1" output="screen" args="/lexus3/gps/duro/odom /localization/kinematic_state"/> -->
   <!-- <node pkg="topic_tools" exec="relay" name="relay2" output="screen" args="/points_raw/cropbox/filtered /sensing/lidar/concatenated/pointcloud"/> -->
-  <!-- ros2 run topic_tools relay /concatenated/pointcloud /sensing/lidar/concatenated/pointcloud -->
   <!-- <node pkg="topic_tools" exec="relay" name="relay3" output="screen" args="/concatenated/pointcloud /sensing/lidar/concatenated/pointcloud"/> -->
   <node pkg="topic_tools" exec="relay" name="relay4" output="screen" args="/sensing/imu/imu /sensing/imu/imu_data"/>
   <node pkg="topic_tools" exec="relay" name="relay5" output="screen" args="/sensing/imu/data /sensing/imu/imu_data"/>
