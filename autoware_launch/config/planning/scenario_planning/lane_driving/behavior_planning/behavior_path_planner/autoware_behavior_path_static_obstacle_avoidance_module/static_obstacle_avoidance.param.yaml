@@ -231,12 +231,12 @@
           ratio_for_return_shift_approval: 0.5          # [-]
         # avoidance distance parameters
         longitudinal:
-          min_prepare_time: 1.0                         # [s]
-          max_prepare_time: 3.0                         # [s]
+          min_prepare_time: 0.5                         # [s]
+          max_prepare_time: 1.5                         # [s]
           min_prepare_distance: 1.0                     # [m]
           min_slow_down_speed: 1.38                     # [m/s]
           buf_slow_down_speed: 0.56                     # [m/s] FOR DEVELOPER
-          nominal_avoidance_speed: 8.33                 # [m/s] FOR DEVELOPER
+          nominal_avoidance_speed: 4.0                  # [m/s] FOR DEVELOPER
           consider_front_overhang: true                 # [-]
           consider_rear_overhang: true                  # [-]
         # return dead line
