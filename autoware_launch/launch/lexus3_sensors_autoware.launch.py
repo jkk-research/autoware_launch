@@ -72,6 +72,13 @@ def generate_launch_description():
 		output='screen'
 	)
 
+	c2_camera_launch_include = IncludeLaunchDescription(
+		PythonLaunchDescriptionSource(
+			os.path.join(
+				get_package_share_directory('usb_cam'),
+				'launch/camera.launch.py'))
+	)			
+
 	return LaunchDescription([
 		imu_include,
 		can1_include,
@@ -80,4 +87,5 @@ def generate_launch_description():
 		os_composable_lidar_include,
 		raw_vehicle_converter_include,
 		# autoware_speed_relay,
+		c2_camera_launch_include,
 	])
